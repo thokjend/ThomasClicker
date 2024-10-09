@@ -1,19 +1,19 @@
 interface HeaderProps {
   gold: number;
-  currnetLevel: number;
+  currentLevel: number;
   currentWorld: number;
 }
 
 export default function Header({
   gold,
-  currnetLevel,
+  currentLevel,
   currentWorld,
 }: HeaderProps) {
   return (
     <div>
-      <ul>
+      <ul className="d-flex flex-row justify-content-around list-unstyled fs-1 fw-bold">
         <li>Gold:{gold}</li>
-        <li>Level:{currnetLevel}</li>
+        <li>Level:{currentLevel}</li>
         <li>World:{currentWorld}</li>
       </ul>
     </div>
