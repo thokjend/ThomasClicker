@@ -33,4 +33,9 @@ export default class HealthBar {
     context.fillRect(this.x, this.y, this.w, this.h);
     context.strokeRect(this.x, this.y, this.maxWidth, this.h);
   }
+
+  updateHealth(val: number) {
+    this.health = val;
+    this.w = (this.health / this.maxHealth) * this.maxWidth;
+  }
 }
