@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
+import MainContent from "./components/MainContent";
 
 function App() {
   const [gold, setGold] = useState(0);
@@ -14,6 +15,7 @@ function App() {
         currentLevel={currentLevel}
         currentWorld={currentWorld}
       />
+      <MainContent />
     </>
   );
 }
