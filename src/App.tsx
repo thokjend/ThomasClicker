@@ -7,6 +7,7 @@ function App() {
   const [gold, setGold] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentWorld, setCurrentWorld] = useState(1);
+  const [health, setHealth] = useState(10 * currentLevel * currentWorld);
 
   return (
     <>
@@ -15,7 +16,14 @@ function App() {
         currentLevel={currentLevel}
         currentWorld={currentWorld}
       />
-      <MainContent />
+      <MainContent
+        gold={gold}
+        setGold={setGold}
+        health={health}
+        setHealth={setHealth}
+        setCurrentLevel={setCurrentLevel}
+        setCurrentWorld={setCurrentWorld}
+      />
     </>
   );
 }

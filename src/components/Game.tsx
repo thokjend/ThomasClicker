@@ -3,8 +3,8 @@ import HealthBar from "./HealthBar";
 
 export default function Game() {
   const [damage, setDamage] = useState(1);
-  const [sprite, setSprite] = useState(getRandomSprite());
 
+  let sprite = getRandomSprite();
   let health = 10;
   const healthBarWidth = 500;
   const healthBarHeight = 30;
