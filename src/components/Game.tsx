@@ -25,7 +25,6 @@ export default function Game({ damage, health, setHealth }: GameProps) {
     if (health === 0) {
       setSprite(getRandomSprite());
       setHealth(10);
-      createMonster();
     }
   };
 
@@ -34,7 +33,7 @@ export default function Game({ damage, health, setHealth }: GameProps) {
     return `/sprites/Icon${randomNumber}.png`;
   }
 
-  function createMonster() {
+  function createHealthBar() {
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const context = canvas.getContext("2d");
 
@@ -68,8 +67,8 @@ export default function Game({ damage, health, setHealth }: GameProps) {
   }
 
   useEffect(() => {
-    createMonster();
-  }, [canvasHeight, canvasWidth]);
+    createHealthBar();
+  });
 
   useEffect(() => {
     updateCanvas();
