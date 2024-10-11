@@ -66,13 +66,18 @@ export default function Game({
 
     // Reset sprite and health for the new wave
     setSprite(getRandomSprite());
-    resetHealthAndCanvas();
+    const newHealth = 10 * newWave * newLevel * newWorld;
+    setHealth(newHealth);
+    resetHealthAndCanvas(newHealth);
   }
 
-  function resetHealthAndCanvas() {
+  function resetHealthAndCanvas(newHealth: number) {
     setTimeout(() => {
-      updateCanvas();
-      setHealth(10); // Reset health
+      // Make sure the health bar's maxHealth is updated
+      if (healthBarRef.current) {
+        healthBarRef.current.maxHealth = newHealth;
+      }
+      updateCanvas(newHealth);
     }, 0);
   }
 
@@ -81,7 +86,7 @@ export default function Game({
     return `/sprites/Icon${randomNumber}.png`;
   }
 
-  function createHealthBar() {
+  function createHealthBar(newHealth: number) {
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const context = canvas.getContext("2d");
 
@@ -90,36 +95,42 @@ export default function Game({
       canvas.height = canvasHeight;
     }
 
-    if (context && !healthBarRef.current) {
-      healthBarRef.current = new HealthBar(
-        x,
-        y,
-        healthBarWidth,
-        healthBarHeight,
-        health,
-        "green"
-      );
+    if (context) {
+      // Update the health bar maxHealth when new health is set for a new wave
+      if (healthBarRef.current) {
+        healthBarRef.current.maxHealth = newHealth; // Update the max health
+        healthBarRef.current.health = newHealth; // Reset the health to full
+      } else {
+        healthBarRef.current = new HealthBar(
+          x,
+          y,
+          healthBarWidth,
+          healthBarHeight,
+          newHealth, // Initial max health
+          "green"
+        );
+      }
       healthBarRef.current.show(context);
     }
   }
 
-  function updateCanvas() {
+  function updateCanvas(newHealth: number) {
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const context = canvas.getContext("2d");
 
     if (context && healthBarRef.current) {
       context.clearRect(0, 0, canvas.width, canvas.height);
-      healthBarRef.current.updateHealth(health);
+      healthBarRef.current.updateHealth(newHealth);
       healthBarRef.current.show(context);
     }
   }
 
   useEffect(() => {
-    createHealthBar();
-  });
+    createHealthBar(health);
+  }, []);
 
   useEffect(() => {
-    updateCanvas();
+    updateCanvas(health);
   }, [health]);
 
   return (

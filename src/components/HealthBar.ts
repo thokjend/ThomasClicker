@@ -30,6 +30,9 @@ export default class HealthBar {
     context.strokeStyle = "#333";
     context.lineWidth = 4;
     context.fillStyle = this.color;
+
+    this.w = Math.max(0, Math.min(this.w, this.maxWidth));
+
     context.fillRect(this.x, this.y, this.w, this.h);
     context.strokeRect(this.x, this.y, this.maxWidth, this.h);
   }
@@ -37,5 +40,6 @@ export default class HealthBar {
   updateHealth(val: number) {
     this.health = val;
     this.w = (this.health / this.maxHealth) * this.maxWidth;
+    this.w = Math.max(0, Math.min(this.w, this.maxWidth));
   }
 }
