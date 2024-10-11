@@ -5,9 +5,12 @@ import MainContent from "./components/MainContent";
 
 function App() {
   const [gold, setGold] = useState(0);
+  const [currentWave, setCurrentWave] = useState(1);
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentWorld, setCurrentWorld] = useState(1);
-  const [health, setHealth] = useState(10 * currentLevel * currentWorld);
+  const [health, setHealth] = useState(
+    10 * currentWave * currentLevel * currentWorld
+  );
 
   return (
     <>
@@ -15,14 +18,19 @@ function App() {
         gold={gold}
         currentLevel={currentLevel}
         currentWorld={currentWorld}
+        currentWave={currentWave}
       />
       <MainContent
         gold={gold}
         setGold={setGold}
         health={health}
         setHealth={setHealth}
+        currentWave={currentWave}
+        currentLevel={currentLevel}
+        currentWorld={currentWorld}
         setCurrentLevel={setCurrentLevel}
         setCurrentWorld={setCurrentWorld}
+        setCurrentWave={setCurrentWave}
       />
     </>
   );
