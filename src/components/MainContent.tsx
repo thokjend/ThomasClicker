@@ -27,7 +27,7 @@ export default function MainContent({
   setCurrentLevel,
   setCurrentWorld,
 }: MainContentProps) {
-  const [damage, setDamage] = useState(5);
+  const [damage, setDamage] = useState(1);
 
   return (
     <div className="container-fluid mt-3">
