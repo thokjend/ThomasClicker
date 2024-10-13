@@ -1,3 +1,5 @@
+import Hero from "./Hero";
+
 interface HeroesProps {
   gold: number;
   setGold: React.Dispatch<React.SetStateAction<number>>;
@@ -16,12 +18,15 @@ export default function Heroes({
       <div className="text-center text-danger fs-4 mb-4">Damage: {damage}</div>
       <ul className="list-unstyled">
         <li className="mb-3">
-          <button
-            onClick={() => setDamage(damage + 1)}
-            className="btn btn-danger w-100 p-3 rounded"
-          >
-            hero 1
-          </button>
+          <Hero
+            initialCost={10}
+            damageIncrease={1}
+            costIncrease={2}
+            gold={gold}
+            setGold={setGold}
+            damage={damage}
+            setDamage={setDamage}
+          ></Hero>
         </li>
         <li className="mb-3">
           <button className="btn btn-danger w-100 p-3 rounded">hero 2</button>

@@ -71,7 +71,7 @@ export default function Game({
 
     // Reset sprite and health for the new wave
     setSprite(getRandomSprite());
-    const newHealth = 10 * newWave * newLevel * newWorld;
+    const newHealth = 10 * newLevel ** 2 * newWorld;
     setHealth(newHealth);
     resetHealthAndCanvas(newHealth);
   }
