@@ -26,6 +26,8 @@ export default function Heroes({
             setGold={setGold}
             damage={damage}
             setDamage={setDamage}
+            name={"Rune, The Shadow Sneaker"}
+            imageBase={"/heroes/wraith/Wraith"}
           ></Hero>
         </li>
         <li className="mb-3">

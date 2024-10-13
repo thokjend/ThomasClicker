@@ -8,6 +8,8 @@ interface HeroProps {
   setGold: React.Dispatch<React.SetStateAction<number>>;
   damage: number;
   setDamage: React.Dispatch<React.SetStateAction<number>>;
+  name: string;
+  imageBase: string;
 }
 
 export default function Hero({
@@ -18,11 +20,33 @@ export default function Hero({
   setGold,
   damage,
   setDamage,
+  name,
+  imageBase,
 }: HeroProps) {
   const [price, setPrice] = useState(initialCost);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
+
+  const getImagePath = () => {
+    if (count < 25) {
+      return `${imageBase}1.png`; // First stage
+    } else if (count >= 25 && count < 50) {
+      return `${imageBase}2.png`; // Second stage at level 25
+    } else {
+      return `${imageBase}3.png`; // Third stage after level 50
+    }
+  };
+
   return (
-    <div>
+    <div className="border p-3 rounded">
+      <div className="justify-content-around d-flex align-items-center">
+        <h5>{name}</h5>
+        <img
+          style={{ width: "100px", height: "100px" }}
+          src={getImagePath()}
+          alt={name}
+          className="hero-image mb-2"
+        />
+      </div>
       <button
         onClick={() => {
           setDamage(damage + damageIncrease);
@@ -30,10 +54,10 @@ export default function Hero({
           setPrice(price + costIncrease);
           setCount(count + 1);
         }}
-        className="btn btn-danger w-100 p-3 rounded"
+        className="w-100 p-3 rounded"
         disabled={gold < price}
       >
-        <div className="justify-content-between d-flex">
+        <div className="justify-content-between d-flex fw-bold">
           <div>Cost: {price} gold </div>
           <div>Level: {count}</div>
         </div>
