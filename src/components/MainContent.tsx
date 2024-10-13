@@ -33,6 +33,8 @@ export default function MainContent({
     <div className="container-fluid mt-3">
       <div className="row " style={{ height: "85vh" }}>
         <Game
+          gold={gold}
+          setGold={setGold}
           health={health}
           setHealth={setHealth}
           damage={damage}
@@ -43,7 +45,12 @@ export default function MainContent({
           setCurrentLevel={setCurrentLevel}
           setCurrentWorld={setCurrentWorld}
         />
-        <Heroes gold={gold} setGold={setGold} setDamage={setDamage} />
+        <Heroes
+          gold={gold}
+          setGold={setGold}
+          damage={damage}
+          setDamage={setDamage}
+        />
       </div>
     </div>
   );

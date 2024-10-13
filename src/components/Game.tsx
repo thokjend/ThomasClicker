@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import HealthBar from "./HealthBar";
 
 interface GameProps {
+  gold: number;
+  setGold: React.Dispatch<React.SetStateAction<number>>;
   damage: number;
   health: number;
   setHealth: React.Dispatch<React.SetStateAction<number>>;
@@ -14,6 +16,8 @@ interface GameProps {
 }
 
 export default function Game({
+  gold,
+  setGold,
   damage,
   health,
   setHealth,
@@ -60,6 +64,7 @@ export default function Game({
       newWave = currentWave + 1; // Move to the next wave
     }
 
+    setGold(gold + 1);
     setCurrentWave(newWave);
     setCurrentLevel(newLevel);
     setCurrentWorld(newWorld);
