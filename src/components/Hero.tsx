@@ -25,7 +25,6 @@ export default function Hero({
 }: HeroProps) {
   const [price, setPrice] = useState(initialCost);
   const [count, setCount] = useState(1);
-  let costIncreaseRate = 0.1;
 
   const getImagePath = () => {
     if (count < 25) {
@@ -35,6 +34,10 @@ export default function Hero({
     } else {
       return `${imageBase}3.png`; // Third stage after level 50
     }
+  };
+
+  const getHeroPrice = (initialCost: number, count: number) => {
+    return Math.floor(initialCost * (1 + costIncrease * count));
   };
 
   return (
@@ -51,9 +54,10 @@ export default function Hero({
       <button
         onClick={() => {
           setDamage(damage + damageIncrease);
-          setGold(gold - initialCost);
-          setPrice(Math.floor(price * (1 + costIncreaseRate) ** count));
+          setGold(gold - price);
+          setPrice(getHeroPrice(initialCost, count + 1));
           setCount(count + 1);
+          console.log(price);
         }}
         className="w-100 p-3 rounded"
         disabled={gold < price}

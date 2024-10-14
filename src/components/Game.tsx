@@ -42,17 +42,20 @@ export default function Game({
   const x = canvasWidth / 2 - healthBarWidth / 2;
   const y = canvasHeight / 2 - healthBarHeight / 2;
 
-  const update = (damage: number) => {
+  function update(damage: number) {
     const newHealth = Math.max(health - damage, 0);
     if (newHealth <= 0) {
       handleProgression();
     } else {
       setHealth(newHealth);
     }
-  };
+  }
 
   function calculateGold() {
-    return 1 + Math.floor(currentWave / 10);
+    console.log(
+      1 + Math.floor(currentWave / 10) + currentLevel + currentWorld * 2
+    );
+    return 1 + Math.floor(currentWave / 10) + currentLevel + currentWorld * 2;
   }
 
   function handleProgression() {
