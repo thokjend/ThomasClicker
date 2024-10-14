@@ -57,14 +57,13 @@ export default function Hero({
           setGold(gold - price);
           setPrice(getHeroPrice(initialCost, count + 1));
           setCount(count + 1);
-          console.log(price);
         }}
         className="w-100 p-3 rounded"
         disabled={gold < price}
       >
         <div className="justify-content-between d-flex fw-bold">
           <div>Cost: {price} gold </div>
-          <div>Level: {count}</div>
+          <div>Level: {count - 1}</div>
         </div>
       </button>
     </div>
