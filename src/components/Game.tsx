@@ -139,7 +139,7 @@ export default function Game({
   }, [health]);
 
   return (
-    <div className="col-9 game-container border d-flex flex-column justify-content-center align-items-center">
+    <div className="col-9 game-container border d-flex flex-column justify-content-center align-items-center ">
       <img
         onClick={() => update(damage)}
         src={sprite}

@@ -30,8 +30,8 @@ export default function MainContent({
   const [damage, setDamage] = useState(1);
 
   return (
-    <div className="container-fluid mt-3">
-      <div className="row " style={{ height: "85vh" }}>
+    <div className="container-fluid h-100 d-flex">
+      <div className="row flex-grow-1">
         <Game
           gold={gold}
           setGold={setGold}

@@ -13,9 +13,10 @@ export default function Heroes({
   setDamage,
 }: HeroesProps) {
   return (
-    <div className="col-3 menu-container border">
+    <div className="col-3 menu-container border overflow-auto">
       <h3 className="text-center fs-1">Heroes</h3>
       <div className="text-center text-danger fs-4 mb-4">Damage: {damage}</div>
+
       <ul className="list-unstyled">
         <li className="mb-3">
           <Hero
@@ -26,15 +27,48 @@ export default function Heroes({
             setGold={setGold}
             damage={damage}
             setDamage={setDamage}
-            name={"Rune, The Shadow Sneaker"}
-            imageBase={"/heroes/wraith/Wraith"}
+            name={"Jonas, The Rocky Boulderfist"}
+            imageBase={"/heroes/golem/Golem"}
           ></Hero>
         </li>
         <li className="mb-3">
-          <button className="btn btn-danger w-100 p-3 rounded">hero 2</button>
+          <Hero
+            initialCost={25}
+            damageIncrease={5}
+            costIncrease={3}
+            gold={gold}
+            setGold={setGold}
+            damage={damage}
+            setDamage={setDamage}
+            name={"Frode, The Mighty Moo-Taur"}
+            imageBase={"/heroes/minotaur/Minotaur"}
+          ></Hero>
         </li>
         <li className="mb-3">
-          <button className="btn btn-danger w-100 p-3 rounded">hero 3</button>
+          <Hero
+            initialCost={50}
+            damageIncrease={10}
+            costIncrease={4}
+            gold={gold}
+            setGold={setGold}
+            damage={damage}
+            setDamage={setDamage}
+            name={"Trine, The Sassy Satyr"}
+            imageBase={"/heroes/satyr/Satyr"}
+          ></Hero>
+        </li>
+        <li className="mb-3">
+          <Hero
+            initialCost={100}
+            damageIncrease={20}
+            costIncrease={5}
+            gold={gold}
+            setGold={setGold}
+            damage={damage}
+            setDamage={setDamage}
+            name={"Rune, The Shadow Sneaker"}
+            imageBase={"/heroes/wraith/Wraith"}
+          ></Hero>
         </li>
       </ul>
     </div>

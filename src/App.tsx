@@ -4,14 +4,14 @@ import Header from "./components/Header";
 import MainContent from "./components/MainContent";
 
 function App() {
-  const [gold, setGold] = useState(10);
+  const [gold, setGold] = useState(1);
   const [currentWave, setCurrentWave] = useState(1);
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentWorld, setCurrentWorld] = useState(1);
   const [health, setHealth] = useState(10);
 
   return (
-    <>
+    <div className="vh-100">
       <Header
         gold={gold}
         currentLevel={currentLevel}
@@ -30,7 +30,7 @@ function App() {
         setCurrentWorld={setCurrentWorld}
         setCurrentWave={setCurrentWave}
       />
-    </>
+    </div>
   );
 }
 
