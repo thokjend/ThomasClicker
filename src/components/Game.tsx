@@ -151,12 +151,12 @@ export default function Game({
   }, [health]);
 
   return (
-    <div className="col-9 game-container border d-flex flex-column justify-content-center align-items-center ">
+    <div className="col-9 game-container border d-flex flex-column justify-content-center align-items-center">
       <img
         onClick={() => update(damage)}
         src={sprite}
         alt="Game Sprite"
-        className="img-fluid w-25"
+        className="img-fluid w-25 pointer"
       />
       <div className="fs-1 fw-bold text-danger">{health}HP</div>
       <canvas id="canvas" style={{ height: "100px", width: "500px" }}></canvas>

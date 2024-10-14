@@ -10,3 +10,7 @@ body {
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
+.pointer {
+  cursor: pointer;
+}
