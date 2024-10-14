@@ -22,7 +22,7 @@ export default function Heroes({
             <Hero
               initialCost={10}
               damageIncrease={1}
-              costIncrease={2}
+              costIncrease={0.5}
               gold={gold}
               setGold={setGold}
               damage={damage}
@@ -33,9 +33,9 @@ export default function Heroes({
           </li>
           <li className="mb-3">
             <Hero
-              initialCost={25}
+              initialCost={150}
               damageIncrease={5}
-              costIncrease={3}
+              costIncrease={1.5}
               gold={gold}
               setGold={setGold}
               damage={damage}
@@ -46,9 +46,9 @@ export default function Heroes({
           </li>
           <li className="mb-3">
             <Hero
-              initialCost={50}
-              damageIncrease={10}
-              costIncrease={4}
+              initialCost={2500}
+              damageIncrease={20}
+              costIncrease={0.5}
               gold={gold}
               setGold={setGold}
               damage={damage}
@@ -59,9 +59,9 @@ export default function Heroes({
           </li>
           <li className="mb-3">
             <Hero
-              initialCost={100}
-              damageIncrease={20}
-              costIncrease={5}
+              initialCost={100000}
+              damageIncrease={50}
+              costIncrease={0.1}
               gold={gold}
               setGold={setGold}
               damage={damage}

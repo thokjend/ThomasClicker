@@ -52,10 +52,7 @@ export default function Game({
   }
 
   function calculateGold() {
-    console.log(
-      1 + Math.floor(currentWave / 10) + currentLevel + currentWorld * 2
-    );
-    return 1 + Math.floor(currentWave / 10) + currentLevel + currentWorld * 2;
+    return 1 + Math.floor(currentWave / 10) + currentLevel + currentWorld;
   }
 
   function handleProgression() {
@@ -78,17 +75,14 @@ export default function Game({
     setCompletedWaves(completedWaves + 1);
     const newGold = calculateGold();
     setGold(gold + newGold);
-
-    //setGold(gold + currentLevel * currentWorld + 10);
     setCurrentWave(newWave);
     setCurrentLevel(newLevel);
     setCurrentWorld(newWorld);
 
     // Reset sprite and health for the new wave
     setSprite(getRandomSprite());
-    //const newHealth = 10 * (newLevel ** 2 + 1) * newWorld;
     const newHealth = Math.round(
-      10 * completedWaves + Math.exp(0.01 * completedWaves)
+      completedWaves + Math.exp(0.01 * completedWaves)
     );
     setHealth(newHealth);
     resetHealthAndCanvas(newHealth);
