@@ -13,6 +13,8 @@ interface GameProps {
   setCurrentWave: React.Dispatch<React.SetStateAction<number>>;
   setCurrentLevel: React.Dispatch<React.SetStateAction<number>>;
   setCurrentWorld: React.Dispatch<React.SetStateAction<number>>;
+  completedWaves: number;
+  setCompletedWaves: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function Game({
@@ -27,6 +29,8 @@ export default function Game({
   setCurrentWave,
   setCurrentLevel,
   setCurrentWorld,
+  completedWaves,
+  setCompletedWaves,
 }: GameProps) {
   const [sprite, setSprite] = useState(getRandomSprite());
   const healthBarRef = useRef<HealthBar | null>(null); // To persist the HealthBar object
@@ -47,6 +51,10 @@ export default function Game({
     }
   };
 
+  function calculateGold() {
+    return 1 + Math.floor(currentWave / 10);
+  }
+
   function handleProgression() {
     let newWave = currentWave;
     let newLevel = currentLevel;
@@ -64,14 +72,21 @@ export default function Game({
       newWave = currentWave + 1; // Move to the next wave
     }
 
-    setGold(gold + 1);
+    setCompletedWaves(completedWaves + 1);
+    const newGold = calculateGold();
+    setGold(gold + newGold);
+
+    //setGold(gold + currentLevel * currentWorld + 10);
     setCurrentWave(newWave);
     setCurrentLevel(newLevel);
     setCurrentWorld(newWorld);
 
     // Reset sprite and health for the new wave
     setSprite(getRandomSprite());
-    const newHealth = 10 * newLevel ** 2 * newWorld;
+    //const newHealth = 10 * (newLevel ** 2 + 1) * newWorld;
+    const newHealth = Math.round(
+      10 * completedWaves + Math.exp(0.01 * completedWaves)
+    );
     setHealth(newHealth);
     resetHealthAndCanvas(newHealth);
   }

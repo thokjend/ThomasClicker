@@ -25,6 +25,7 @@ export default function Hero({
 }: HeroProps) {
   const [price, setPrice] = useState(initialCost);
   const [count, setCount] = useState(1);
+  let costIncreaseRate = 0.1;
 
   const getImagePath = () => {
     if (count < 25) {
@@ -51,7 +52,7 @@ export default function Hero({
         onClick={() => {
           setDamage(damage + damageIncrease);
           setGold(gold - initialCost);
-          setPrice(price + costIncrease);
+          setPrice(Math.floor(price * (1 + costIncreaseRate) ** count));
           setCount(count + 1);
         }}
         className="w-100 p-3 rounded"

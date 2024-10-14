@@ -27,7 +27,8 @@ export default function MainContent({
   setCurrentLevel,
   setCurrentWorld,
 }: MainContentProps) {
-  const [damage, setDamage] = useState(1);
+  const [damage, setDamage] = useState(1000);
+  const [completedWaves, setCompletedWaves] = useState(0);
 
   return (
     <div className="container-fluid h-100 d-flex">
@@ -44,6 +45,8 @@ export default function MainContent({
           setCurrentWave={setCurrentWave}
           setCurrentLevel={setCurrentLevel}
           setCurrentWorld={setCurrentWorld}
+          completedWaves={completedWaves}
+          setCompletedWaves={setCompletedWaves}
         />
         <Heroes
           gold={gold}
