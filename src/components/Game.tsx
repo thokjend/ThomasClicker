@@ -70,6 +70,7 @@ export default function Game({
       if (currentLevel === 10) {
         newLevel = 1; // Reset level for the new world
         newWorld = currentWorld + 1; // Increment world
+        setbackgroundImg(backgroundImg + 1);
       } else {
         newLevel = currentLevel + 1; // Move to the next level
       }
@@ -159,7 +160,7 @@ export default function Game({
     <div
       className="col-9 game-container border d-flex flex-column justify-content-center align-items-center"
       style={{
-        backgroundImage: `url(/backgrounds/world${backgroundImg}.jpg)`,
+        backgroundImage: `url(/backgrounds/world${backgroundImg}.png)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
