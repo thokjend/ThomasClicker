@@ -43,6 +43,16 @@ export default function Game({
   const x = canvasWidth / 2 - healthBarWidth / 2;
   const y = canvasHeight / 2 - healthBarHeight / 2;
 
+  const dps = 10;
+
+  function handleClick() {
+    update(damage);
+  }
+
+  function applyDps() {
+    update(dps);
+  }
+
   function update(damage: number) {
     const newHealth = Math.max(health - damage, 0);
     if (newHealth <= 0) {
@@ -156,6 +166,16 @@ export default function Game({
     updateCanvas(health);
   }, [health]);
 
+  useEffect(() => {
+    const dpsInterval = setInterval(() => {
+      if (health > 0) {
+        applyDps();
+      }
+    }, 1000);
+
+    return () => clearInterval(dpsInterval); // Cleanup on component unmount
+  }, [health]);
+
   return (
     <div
       className="col-9 game-container border d-flex flex-column justify-content-center align-items-center"
@@ -167,13 +187,13 @@ export default function Game({
       }}
     >
       <img
-        onClick={() => update(damage)}
+        onClick={() => handleClick()}
         src={sprite}
         alt="Game Sprite"
         className="img-fluid w-25 pointer"
       />
       <div className="fs-1 fw-bold" style={{ color: "red" }}>
-        {health}HP
+        {Math.round(health)}HP
       </div>
       <canvas id="canvas" style={{ height: "100px", width: "500px" }}></canvas>
     </div>

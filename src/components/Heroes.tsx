@@ -61,7 +61,7 @@ export default function Heroes({
           </li>
           <li className="mb-3">
             <Hero
-              initialCost={50000}
+              initialCost={10000}
               damageIncrease={100}
               costIncrease={0.25}
               gold={gold}
