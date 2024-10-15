@@ -34,6 +34,7 @@ export default function Game({
 }: GameProps) {
   const [sprite, setSprite] = useState(getRandomSprite());
   const healthBarRef = useRef<HealthBar | null>(null); // To persist the HealthBar object
+  const [backgroundImg, setbackgroundImg] = useState(1);
 
   const healthBarWidth = 500;
   const healthBarHeight = 30;
@@ -52,7 +53,11 @@ export default function Game({
   }
 
   function calculateGold() {
-    return 1 + Math.floor(currentWave / 10) + currentLevel + currentWorld;
+    const baseGold = 1;
+    const waveMultiplier = Math.log(completedWaves + 1); // Logarithmic growth based on completed waves
+    return Math.floor(
+      baseGold * (1 + waveMultiplier) + currentLevel + currentWorld ** 4
+    );
   }
 
   function handleProgression() {
@@ -151,14 +156,24 @@ export default function Game({
   }, [health]);
 
   return (
-    <div className="col-9 game-container border d-flex flex-column justify-content-center align-items-center">
+    <div
+      className="col-9 game-container border d-flex flex-column justify-content-center align-items-center"
+      style={{
+        backgroundImage: `url(/backgrounds/world${backgroundImg}.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <img
         onClick={() => update(damage)}
         src={sprite}
         alt="Game Sprite"
         className="img-fluid w-25 pointer"
       />
-      <div className="fs-1 fw-bold text-danger">{health}HP</div>
+      <div className="fs-1 fw-bold" style={{ color: "red" }}>
+        {health}HP
+      </div>
       <canvas id="canvas" style={{ height: "100px", width: "500px" }}></canvas>
     </div>
   );

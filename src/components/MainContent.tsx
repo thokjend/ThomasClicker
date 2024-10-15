@@ -28,7 +28,7 @@ export default function MainContent({
   setCurrentWorld,
 }: MainContentProps) {
   const [damage, setDamage] = useState(1);
-  const [completedWaves, setCompletedWaves] = useState(1);
+  const [completedWaves, setCompletedWaves] = useState(0);
 
   return (
     <div className="container-fluid h-100 d-flex">

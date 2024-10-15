@@ -27,9 +27,9 @@ export default function Hero({
   const [count, setCount] = useState(1);
 
   const getImagePath = () => {
-    if (count < 25) {
+    if (count <= 25) {
       return `${imageBase}1.png`; // First stage
-    } else if (count >= 25 && count < 50) {
+    } else if (count > 25 && count <= 50) {
       return `${imageBase}2.png`; // Second stage at level 25
     } else {
       return `${imageBase}3.png`; // Third stage after level 50
@@ -38,6 +38,24 @@ export default function Hero({
 
   const getHeroPrice = (initialCost: number, count: number) => {
     return Math.floor(initialCost * (1 + costIncrease * count));
+  };
+
+  const handleLevelUp = () => {
+    // Increase base damage
+    let newDamage = damage + damageIncrease;
+
+    // Add bonus at levels 25 and 50
+    if (count === 25) {
+      newDamage += damage * 0.1; // 10% bonus at level 25
+    } else if (count === 50) {
+      newDamage += damage * 0.2; // 20% bonus at level 50
+    }
+
+    // Update state
+    setDamage(newDamage);
+    setGold(gold - price);
+    setPrice(getHeroPrice(initialCost, count + 1));
+    setCount(count + 1);
   };
 
   return (
@@ -52,12 +70,7 @@ export default function Hero({
         />
       </div>
       <button
-        onClick={() => {
-          setDamage(damage + damageIncrease);
-          setGold(gold - price);
-          setPrice(getHeroPrice(initialCost, count + 1));
-          setCount(count + 1);
-        }}
+        onClick={() => handleLevelUp()}
         className="w-100 p-3 rounded"
         disabled={gold < price}
       >

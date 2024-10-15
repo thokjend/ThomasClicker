@@ -15,7 +15,9 @@ export default function Heroes({
   return (
     <div className="col-3 border ">
       <h3 className="text-center fs-1">Heroes</h3>
-      <div className="text-center text-danger fs-4 mb-4">Damage: {damage}</div>
+      <div className="text-center text-danger fs-4 mb-4">
+        Damage: {Math.round(damage)}
+      </div>
       <div className="menu-container overflow-auto">
         <ul className="list-unstyled">
           <li className="mb-3">
@@ -59,9 +61,9 @@ export default function Heroes({
           </li>
           <li className="mb-3">
             <Hero
-              initialCost={100000}
-              damageIncrease={50}
-              costIncrease={0.1}
+              initialCost={50000}
+              damageIncrease={100}
+              costIncrease={0.25}
               gold={gold}
               setGold={setGold}
               damage={damage}
