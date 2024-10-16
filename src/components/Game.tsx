@@ -2,41 +2,33 @@ import { useEffect, useRef, useState } from "react";
 import HealthBar from "./HealthBar";
 
 interface GameProps {
-  gold: number;
   setGold: React.Dispatch<React.SetStateAction<number>>;
   damage: number;
   dps: number;
-  health: number;
-  setHealth: React.Dispatch<React.SetStateAction<number>>;
   currentWave: number;
   currentLevel: number;
   currentWorld: number;
   setCurrentWave: React.Dispatch<React.SetStateAction<number>>;
   setCurrentLevel: React.Dispatch<React.SetStateAction<number>>;
   setCurrentWorld: React.Dispatch<React.SetStateAction<number>>;
-  completedWaves: number;
-  setCompletedWaves: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function Game({
-  gold,
   setGold,
   damage,
   dps,
-  health,
-  setHealth,
   currentWave,
   currentLevel,
   currentWorld,
   setCurrentWave,
   setCurrentLevel,
   setCurrentWorld,
-  completedWaves,
-  setCompletedWaves,
 }: GameProps) {
+  const [health, setHealth] = useState(1);
   const [sprite, setSprite] = useState(getRandomSprite());
-  const healthBarRef = useRef<HealthBar | null>(null); // To persist the HealthBar object
+  const [completedWaves, setCompletedWaves] = useState(1);
   const [backgroundImg, setbackgroundImg] = useState(1);
+  const healthBarRef = useRef<HealthBar | null>(null); // To persist the HealthBar object
 
   const healthBarWidth = 500;
   const healthBarHeight = 30;
@@ -80,15 +72,6 @@ export default function Game({
     });
   }
 
-  /* function update(damage: number) {
-    const newHealth = Math.max(health - damage, 0);
-    if (newHealth <= 0) {
-      handleProgression();
-    } else {
-      setHealth(newHealth);
-    }
-  } */
-
   function calculateGold() {
     const baseGold = 1;
     const waveMultiplier = Math.log(completedWaves + 1); // Logarithmic growth based on completed waves
@@ -117,7 +100,7 @@ export default function Game({
 
     setCompletedWaves(completedWaves + 1);
     const newGold = calculateGold();
-    setGold(gold + newGold);
+    setGold((prevGold) => prevGold + newGold);
     setCurrentWave(newWave);
     setCurrentLevel(newLevel);
     setCurrentWorld(newWorld);
@@ -127,7 +110,6 @@ export default function Game({
     const newHealth = Math.round(
       completedWaves + Math.exp(0.01 * completedWaves)
     );
-    console.log(newHealth);
     setHealth(newHealth);
     resetHealthAndCanvas(newHealth);
   }

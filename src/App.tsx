@@ -8,7 +8,6 @@ function App() {
   const [currentWave, setCurrentWave] = useState(1);
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentWorld, setCurrentWorld] = useState(1);
-  const [health, setHealth] = useState(1);
 
   return (
     <div className="vh-100">
@@ -21,8 +20,6 @@ function App() {
       <MainContent
         gold={gold}
         setGold={setGold}
-        health={health}
-        setHealth={setHealth}
         currentWave={currentWave}
         currentLevel={currentLevel}
         currentWorld={currentWorld}
