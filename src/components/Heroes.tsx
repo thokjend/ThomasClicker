@@ -30,11 +30,14 @@ export default function Heroes({
             <Hero
               initialCost={10}
               damageIncrease={1}
+              dpsIncrease={1}
               costIncrease={0.5}
               gold={gold}
               setGold={setGold}
               damage={damage}
               setDamage={setDamage}
+              dps={dps}
+              setDps={setDps}
               name={"Jonas, The Rocky Boulderfist"}
               imageBase={"/heroes/golem/Golem"}
             ></Hero>
@@ -43,11 +46,14 @@ export default function Heroes({
             <Hero
               initialCost={150}
               damageIncrease={5}
+              dpsIncrease={5}
               costIncrease={1.5}
               gold={gold}
               setGold={setGold}
               damage={damage}
               setDamage={setDamage}
+              dps={dps}
+              setDps={setDps}
               name={"Frode, The Mighty Moo-Taur"}
               imageBase={"/heroes/minotaur/Minotaur"}
             ></Hero>
@@ -56,11 +62,14 @@ export default function Heroes({
             <Hero
               initialCost={2500}
               damageIncrease={20}
+              dpsIncrease={10}
               costIncrease={0.5}
               gold={gold}
               setGold={setGold}
               damage={damage}
               setDamage={setDamage}
+              dps={dps}
+              setDps={setDps}
               name={"Trine, The Sassy Satyr"}
               imageBase={"/heroes/satyr/Satyr"}
             ></Hero>
@@ -69,11 +78,14 @@ export default function Heroes({
             <Hero
               initialCost={10000}
               damageIncrease={100}
+              dpsIncrease={50}
               costIncrease={0.25}
               gold={gold}
               setGold={setGold}
               damage={damage}
               setDamage={setDamage}
+              dps={dps}
+              setDps={setDps}
               name={"Rune, The Shadow Sneaker"}
               imageBase={"/heroes/wraith/Wraith"}
             ></Hero>

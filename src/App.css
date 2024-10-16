@@ -6,7 +6,7 @@ body {
 }
 
 .menu-container {
-  height: calc(100vh - 200px); /* Adjust this value based on your layout */
+  height: calc(100vh - 300px); /* Adjust this value based on your layout */
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }

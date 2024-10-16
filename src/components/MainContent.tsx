@@ -30,6 +30,7 @@ export default function MainContent({
     <div className="container-fluid h-100 d-flex">
       <div className="row flex-grow-1">
         <Game
+          gold={gold}
           setGold={setGold}
           damage={damage}
           dps={dps}

@@ -3,11 +3,14 @@ import { useState } from "react";
 interface HeroProps {
   initialCost: number;
   damageIncrease: number;
+  dpsIncrease: number;
   costIncrease: number;
   gold: number;
   setGold: React.Dispatch<React.SetStateAction<number>>;
   damage: number;
   setDamage: React.Dispatch<React.SetStateAction<number>>;
+  dps: number;
+  setDps: React.Dispatch<React.SetStateAction<number>>;
   name: string;
   imageBase: string;
 }
@@ -15,11 +18,14 @@ interface HeroProps {
 export default function Hero({
   initialCost,
   damageIncrease,
+  dpsIncrease,
   costIncrease,
   gold,
   setGold,
   damage,
   setDamage,
+  dps,
+  setDps,
   name,
   imageBase,
 }: HeroProps) {
@@ -52,6 +58,7 @@ export default function Hero({
     }
 
     // Update state
+    setDps(dps + dpsIncrease);
     setDamage(newDamage);
     setGold(gold - price);
     setPrice(getHeroPrice(initialCost, count + 1));

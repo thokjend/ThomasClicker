@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import HealthBar from "./HealthBar";
 
 interface GameProps {
+  gold: number;
   setGold: React.Dispatch<React.SetStateAction<number>>;
   damage: number;
   dps: number;
@@ -14,6 +15,7 @@ interface GameProps {
 }
 
 export default function Game({
+  gold,
   setGold,
   damage,
   dps,
@@ -63,13 +65,12 @@ export default function Game({
   }
 
   function update(damage: number) {
-    setHealth((prevHealth) => {
-      const newHealth = Math.max(prevHealth - damage, 0);
-      if (newHealth <= 0) {
-        handleProgression(); // Progress when health reaches 0
-      }
-      return newHealth;
-    });
+    const newHealth = Math.max(health - damage, 0);
+    if (newHealth <= 0) {
+      handleProgression();
+    } else {
+      setHealth(newHealth);
+    }
   }
 
   function calculateGold() {
@@ -100,7 +101,7 @@ export default function Game({
 
     setCompletedWaves(completedWaves + 1);
     const newGold = calculateGold();
-    setGold((prevGold) => prevGold + newGold);
+    setGold(gold + newGold);
     setCurrentWave(newWave);
     setCurrentLevel(newLevel);
     setCurrentWorld(newWorld);
@@ -179,7 +180,7 @@ export default function Game({
   useEffect(() => {
     const stopDps = applyDps(); // Start applying DPS on mount
     return () => stopDps(); // Cleanup the interval on unmount
-  }, [health, currentWave, currentLevel, currentWorld]);
+  }, [dps, health, currentWave, currentLevel, currentWorld]);
 
   return (
     <div
