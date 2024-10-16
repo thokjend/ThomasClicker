@@ -5,6 +5,7 @@ interface GameProps {
   gold: number;
   setGold: React.Dispatch<React.SetStateAction<number>>;
   damage: number;
+  dps: number;
   health: number;
   setHealth: React.Dispatch<React.SetStateAction<number>>;
   currentWave: number;
@@ -21,6 +22,7 @@ export default function Game({
   gold,
   setGold,
   damage,
+  dps,
   health,
   setHealth,
   currentWave,
@@ -43,24 +45,49 @@ export default function Game({
   const x = canvasWidth / 2 - healthBarWidth / 2;
   const y = canvasHeight / 2 - healthBarHeight / 2;
 
-  const dps = 10;
-
   function handleClick() {
     update(damage);
   }
 
   function applyDps() {
-    update(dps);
+    const ticksPerSecond = dps; // 1 tick per damage unit
+
+    // Ensure ticksPerSecond is greater than 0 to avoid division by zero
+    if (ticksPerSecond > 0) {
+      const damagePerTick = 1; // Each tick will do 1 damage
+      const tickInterval = 1000 / ticksPerSecond; // Calculate interval between each tick in milliseconds
+
+      // Apply DPS by triggering damage at each tick
+      const intervalId = setInterval(() => {
+        update(damagePerTick);
+        if (health <= 0) clearInterval(intervalId);
+      }, tickInterval);
+
+      return () => clearInterval(intervalId);
+    } else {
+      // Return a no-op function if dps is 0 to avoid errors
+      return () => {};
+    }
   }
 
   function update(damage: number) {
+    setHealth((prevHealth) => {
+      const newHealth = Math.max(prevHealth - damage, 0);
+      if (newHealth <= 0) {
+        handleProgression(); // Progress when health reaches 0
+      }
+      return newHealth;
+    });
+  }
+
+  /* function update(damage: number) {
     const newHealth = Math.max(health - damage, 0);
     if (newHealth <= 0) {
       handleProgression();
     } else {
       setHealth(newHealth);
     }
-  }
+  } */
 
   function calculateGold() {
     const baseGold = 1;
@@ -100,6 +127,7 @@ export default function Game({
     const newHealth = Math.round(
       completedWaves + Math.exp(0.01 * completedWaves)
     );
+    console.log(newHealth);
     setHealth(newHealth);
     resetHealthAndCanvas(newHealth);
   }
@@ -167,14 +195,9 @@ export default function Game({
   }, [health]);
 
   useEffect(() => {
-    const dpsInterval = setInterval(() => {
-      if (health > 0) {
-        applyDps();
-      }
-    }, 1000);
-
-    return () => clearInterval(dpsInterval); // Cleanup on component unmount
-  }, [health]);
+    const stopDps = applyDps(); // Start applying DPS on mount
+    return () => stopDps(); // Cleanup the interval on unmount
+  }, [health, currentWave, currentLevel, currentWorld]);
 
   return (
     <div

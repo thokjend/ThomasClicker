@@ -28,6 +28,7 @@ export default function MainContent({
   setCurrentWorld,
 }: MainContentProps) {
   const [damage, setDamage] = useState(1);
+  const [dps, setDps] = useState(0);
   const [completedWaves, setCompletedWaves] = useState(0);
 
   return (
@@ -39,6 +40,7 @@ export default function MainContent({
           health={health}
           setHealth={setHealth}
           damage={damage}
+          dps={dps}
           currentWave={currentWave}
           currentLevel={currentLevel}
           currentWorld={currentWorld}
@@ -53,6 +55,8 @@ export default function MainContent({
           setGold={setGold}
           damage={damage}
           setDamage={setDamage}
+          dps={dps}
+          setDps={setDps}
         />
       </div>
     </div>
