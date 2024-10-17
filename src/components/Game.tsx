@@ -80,10 +80,11 @@ export default function Game({
     return Math.floor(baseGold * (1 + waveMultiplier) + currentWorld ** 5);
   }
 
-  function handleProgression() {
+  function progress() {
     let newWave = currentWave;
     let newLevel = currentLevel;
     let newWorld = currentWorld;
+    const newGold = calculateGold();
 
     if (currentWave === 10) {
       newWave = 1; // Reset wave for the new level
@@ -98,12 +99,15 @@ export default function Game({
       newWave = currentWave + 1; // Move to the next wave
     }
 
-    setCompletedWaves(completedWaves + 1);
-    const newGold = calculateGold();
-    setGold(gold + newGold);
     setCurrentWave(newWave);
     setCurrentLevel(newLevel);
     setCurrentWorld(newWorld);
+    setCompletedWaves(completedWaves + 1);
+    setGold(gold + newGold);
+  }
+
+  function handleProgression() {
+    progress();
 
     // Reset sprite for the new wave
     setSprite(getRandomSprite());
@@ -112,7 +116,7 @@ export default function Game({
     if (currentWave === 9 && currentLevel === 10) {
       const bossHpMultiplier = [1, 2, 3, 4, 5, 10, 25, 50, 100, 1000];
       const baseBossHp = 10000;
-      const newHealth = baseBossHp * bossHpMultiplier[newWorld - 1]; // Set boss health using the multiplier
+      const newHealth = baseBossHp * bossHpMultiplier[currentWorld - 1]; // Set boss health using the multiplier
       setHealth(newHealth);
       resetHealthAndCanvas(newHealth);
     } else {

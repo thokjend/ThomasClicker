@@ -23,7 +23,7 @@ export default function MainContent({
   setCurrentLevel,
   setCurrentWorld,
 }: MainContentProps) {
-  const [damage, setDamage] = useState(100000);
+  const [damage, setDamage] = useState(1);
   const [dps, setDps] = useState(0);
 
   return (
