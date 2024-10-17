@@ -53,7 +53,8 @@ export default function Hero({
 
     // Add bonus at levels 25 and 50
     if (count === 25 || count === 50) {
-      newDamage += damage * 0.1; // 10% bonus damage at level 25 and level 50
+      // 10% bonus damage and dps at level 25 and level 50
+      newDamage += damage * 0.1;
       newDps += dps * 0.1;
     }
 
