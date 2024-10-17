@@ -43,22 +43,22 @@ export default function Hero({
   };
 
   const getHeroPrice = (initialCost: number, count: number) => {
-    return Math.floor(initialCost * (1 + costIncrease * count));
+    return Math.floor(initialCost * costIncrease ** count);
   };
 
   const handleLevelUp = () => {
     // Increase base damage
     let newDamage = damage + damageIncrease;
+    let newDps = dps + dpsIncrease;
 
     // Add bonus at levels 25 and 50
-    if (count === 25) {
-      newDamage += damage * 0.1; // 10% bonus at level 25
-    } else if (count === 50) {
-      newDamage += damage * 0.2; // 20% bonus at level 50
+    if (count === 25 || count === 50) {
+      newDamage += damage * 0.1; // 10% bonus damage at level 25 and level 50
+      newDps += dps * 0.1;
     }
 
     // Update state
-    setDps(dps + dpsIncrease);
+    setDps(newDps);
     setDamage(newDamage);
     setGold(gold - price);
     setPrice(getHeroPrice(initialCost, count + 1));

@@ -26,7 +26,7 @@ export default function Game({
   setCurrentLevel,
   setCurrentWorld,
 }: GameProps) {
-  const [health, setHealth] = useState(1);
+  const [health, setHealth] = useState(10);
   const [sprite, setSprite] = useState(getRandomSprite());
   const [completedWaves, setCompletedWaves] = useState(1);
   const [backgroundImg, setbackgroundImg] = useState(1);
@@ -44,11 +44,12 @@ export default function Game({
   }
 
   function applyDps() {
-    const ticksPerSecond = dps; // 1 tick per damage unit
+    const maxTicksPerSecond = 60;
+    const ticksPerSecond = Math.min(dps, maxTicksPerSecond); // Avoid going over 60 ticks per second
 
     // Ensure ticksPerSecond is greater than 0 to avoid division by zero
     if (ticksPerSecond > 0) {
-      const damagePerTick = 1; // Each tick will do 1 damage
+      const damagePerTick = dps / ticksPerSecond; // Scale the damage to maintain correct DPS
       const tickInterval = 1000 / ticksPerSecond; // Calculate interval between each tick in milliseconds
 
       // Apply DPS by triggering damage at each tick
@@ -76,9 +77,7 @@ export default function Game({
   function calculateGold() {
     const baseGold = 1;
     const waveMultiplier = Math.log(completedWaves + 1); // Logarithmic growth based on completed waves
-    return Math.floor(
-      baseGold * (1 + waveMultiplier) + currentLevel + currentWorld ** 4
-    );
+    return Math.floor(baseGold * (1 + waveMultiplier) + currentWorld ** 5);
   }
 
   function handleProgression() {
@@ -106,13 +105,24 @@ export default function Game({
     setCurrentLevel(newLevel);
     setCurrentWorld(newWorld);
 
-    // Reset sprite and health for the new wave
+    // Reset sprite for the new wave
     setSprite(getRandomSprite());
-    const newHealth = Math.round(
-      completedWaves + Math.exp(0.01 * completedWaves)
-    );
-    setHealth(newHealth);
-    resetHealthAndCanvas(newHealth);
+
+    // Health for Boss Level
+    if (currentWave === 9 && currentLevel === 10) {
+      const bossHpMultiplier = [1, 2, 3, 4, 5, 10, 25, 50, 100, 1000];
+      const baseBossHp = 10000;
+      const newHealth = baseBossHp * bossHpMultiplier[newWorld - 1]; // Set boss health using the multiplier
+      setHealth(newHealth);
+      resetHealthAndCanvas(newHealth);
+    } else {
+      // Health for normal wave
+      const newHealth = Math.round(
+        10 * completedWaves + Math.exp(0.01 * completedWaves)
+      );
+      setHealth(newHealth);
+      resetHealthAndCanvas(newHealth);
+    }
   }
 
   function resetHealthAndCanvas(newHealth: number) {
@@ -188,7 +198,7 @@ export default function Game({
       style={{
         backgroundImage: `url(/backgrounds/world${backgroundImg}.png)`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
       }}
     >

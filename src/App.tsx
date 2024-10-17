@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import MainContent from "./components/MainContent";
 
 function App() {
-  const [gold, setGold] = useState(0);
+  const [gold, setGold] = useState(1);
   const [currentWave, setCurrentWave] = useState(1);
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentWorld, setCurrentWorld] = useState(1);
