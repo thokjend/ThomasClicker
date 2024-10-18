@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import HealthBar from "./HealthBar";
+import HealthBar from "../utils/HealthBar";
 
 interface GameProps {
   gold: number;
