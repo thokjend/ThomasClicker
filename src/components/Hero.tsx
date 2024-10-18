@@ -67,7 +67,7 @@ export default function Hero({
   };
 
   return (
-    <div className="border p-3 rounded">
+    <div className="p-3 rounded" style={{ border: "2px solid black" }}>
       <div className="justify-content-around d-flex align-items-center">
         <h5>{name}</h5>
         <img
@@ -82,7 +82,7 @@ export default function Hero({
         className="w-100 p-3 rounded"
         disabled={gold < price}
       >
-        <div className="justify-content-between d-flex fw-bold">
+        <div className="justify-content-between d-flex fw-bold text-warning">
           <div>Cost: {price} gold </div>
           <div>Level: {count - 1}</div>
         </div>

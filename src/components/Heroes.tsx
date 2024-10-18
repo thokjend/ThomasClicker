@@ -17,16 +17,16 @@ export default function Heroes({
   setDps,
 }: HeroesProps) {
   return (
-    <div className="col-3 border ">
+    <div className="col-3 bg-dark text-warning">
       <h3 className="text-center fs-1">Heroes</h3>
-      <div className="text-center text-danger fs-4 mb-4">
-        Damage: {Math.round(damage)}
+      <div className="text-center fs-4 mb-4" style={{ color: "red" }}>
+        Damage per click: {Math.round(damage)}
         <br />
-        Dps: {dps}
+        Dps: {Math.floor(dps)}
       </div>
       <div className="menu-container overflow-auto">
         <ul className="list-unstyled">
-          <li className="mb-3">
+          <li className="mb-3 m-2">
             <Hero
               initialCost={10}
               damageIncrease={1}
@@ -42,7 +42,7 @@ export default function Heroes({
               imageBase={"/heroes/golem/Golem"}
             ></Hero>
           </li>
-          <li className="mb-3">
+          <li className="mb-3 m-2">
             <Hero
               initialCost={150}
               damageIncrease={5}
@@ -58,7 +58,7 @@ export default function Heroes({
               imageBase={"/heroes/minotaur/Minotaur"}
             ></Hero>
           </li>
-          <li className="mb-3">
+          <li className="mb-3 m-2">
             <Hero
               initialCost={2500}
               damageIncrease={10}
@@ -74,7 +74,7 @@ export default function Heroes({
               imageBase={"/heroes/satyr/Satyr"}
             ></Hero>
           </li>
-          <li className="mb-3">
+          <li className="mb-3 m-2">
             <Hero
               initialCost={10000}
               damageIncrease={50}

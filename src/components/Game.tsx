@@ -198,7 +198,7 @@ export default function Game({
 
   return (
     <div
-      className="col-9 game-container border d-flex flex-column justify-content-center align-items-center"
+      className="col-9 game-container d-flex flex-column justify-content-center align-items-center"
       style={{
         backgroundImage: `url(/backgrounds/world${backgroundImg}.png)`,
         backgroundSize: "cover",
