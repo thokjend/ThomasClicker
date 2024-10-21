@@ -1,50 +1,27 @@
-# React + TypeScript + Vite
+# Thomas Clicker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+A simple clicker game built with React and TypeScript. Players defeat monsters to earn gold, upgrade their heroes, and progress through waves of increasingly challenging foes, all while enhancing their gold rewards and hero abilities.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Defeat Monsters for Gold:** Players earn gold by defeating monsters as they progress through waves.
+- **Hero Upgrades:** Players can purchase and upgrade heroes to increase their damage output against monsters.
+- **Monster Waves:** Engage in battles against progressively tougher monsters across multiple waves.
+- **Dynamic Health System:** Monsters' health scales with each wave, providing a challenging experience.
+- **Gold Rewards:** Earn gold based on the monsters defeated, with increasing rewards as the game progresses.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Install
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+npm install concurrently
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Running the Application
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+npm run dev
+```
+
+The application will be available at `http://localhost:5173/`
