@@ -23,6 +23,7 @@ interface GameProps {
   setCurrentWave: React.Dispatch<React.SetStateAction<number>>;
   setCurrentLevel: React.Dispatch<React.SetStateAction<number>>;
   setCurrentWorld: React.Dispatch<React.SetStateAction<number>>;
+  endGame: () => void;
 }
 
 export default function Game({
@@ -36,6 +37,7 @@ export default function Game({
   setCurrentWave,
   setCurrentLevel,
   setCurrentWorld,
+  endGame,
 }: GameProps) {
   const [health, setHealth] = useState(10);
   const [sprite, setSprite] = useState(getRandomSprite());
@@ -80,6 +82,10 @@ export default function Game({
     let newWave = currentWave;
     let newLevel = currentLevel;
     let newWorld = currentWorld;
+
+    if (currentWave === 10 && currentLevel === 10 && currentWorld === 10) {
+      endGame();
+    }
 
     if (currentWave === 10) {
       newWave = 1; // Reset wave for the new level

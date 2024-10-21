@@ -14,3 +14,27 @@ body {
 .pointer {
   cursor: pointer;
 }
+
+.credits-container {
+  position: relative;
+  height: 100%; /* Adjust this height as needed */
+  width: 100%;
+  overflow: hidden; /* Hide content that moves out of view */
+  display: flex;
+  justify-content: center;
+}
+
+.credits {
+  position: absolute;
+  bottom: -200px; /* Start credits below the container */
+  animation: scrollCredits 20s linear forwards; /* Duration can be adjusted */
+}
+
+@keyframes scrollCredits {
+  0% {
+    bottom: -300px;
+  }
+  100% {
+    bottom: 40%; /* Move to the top of the container */
+  }
+}

@@ -11,6 +11,7 @@ interface MainContentProps {
   setCurrentWave: React.Dispatch<React.SetStateAction<number>>;
   setCurrentLevel: React.Dispatch<React.SetStateAction<number>>;
   setCurrentWorld: React.Dispatch<React.SetStateAction<number>>;
+  endGame: () => void;
 }
 
 export default function MainContent({
@@ -22,6 +23,7 @@ export default function MainContent({
   setCurrentWave,
   setCurrentLevel,
   setCurrentWorld,
+  endGame,
 }: MainContentProps) {
   const [damage, setDamage] = useState(1);
   const [dps, setDps] = useState(0);
@@ -40,6 +42,7 @@ export default function MainContent({
           setCurrentWave={setCurrentWave}
           setCurrentLevel={setCurrentLevel}
           setCurrentWorld={setCurrentWorld}
+          endGame={endGame}
         />
         <Heroes
           gold={gold}
