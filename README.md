@@ -15,7 +15,7 @@ A simple clicker game built with React and TypeScript. Players defeat monsters t
 ## Install
 
 ```
-npm install concurrently
+npm install
 ```
 
 ## Running the Application
