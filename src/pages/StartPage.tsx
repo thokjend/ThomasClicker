@@ -13,7 +13,11 @@ export default function StartPage({ resetGame }: StartPageProps) {
   return (
     <div className="bg-dark text-white vh-100 d-flex flex-column justify-content-center align-items-center">
       <h1 className="mb-4">ThomasClicker</h1>
-      <button className="btn btn-primary btn-lg" onClick={startGame}>
+      <button
+        className="btn btn-primary btn-lg"
+        style={{ width: "250px" }}
+        onClick={startGame}
+      >
         Play
       </button>
     </div>
