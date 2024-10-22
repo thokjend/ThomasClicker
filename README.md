@@ -1,4 +1,4 @@
-# Thomas Clicker
+# ThomasClicker
 
 ## Overview
 
