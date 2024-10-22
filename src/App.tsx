@@ -1,46 +1,67 @@
-/* import { useState } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import MainContent from "./components/MainContent";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import StartPage from "./pages/StartPage";
+import MainPage from "./pages/MainPage";
+import CreditsPage from "./pages/CreditsPage";
 
-function App() {
+import { useState } from "react";
+import "./App.css";
+
+export default function App() {
   const [gold, setGold] = useState(1);
   const [currentWave, setCurrentWave] = useState(1);
   const [currentLevel, setCurrentLevel] = useState(1);
   const [currentWorld, setCurrentWorld] = useState(1);
-  const [gameOver, setGameOver] = useState(false);
+  const [startTime, setStartTime] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
+
+  function resetGame() {
+    setGold(1);
+    setCurrentWave(1);
+    setCurrentLevel(1);
+    setCurrentWorld(1);
+    setStartTime(Date.now());
+    setElapsedTime(0);
+  }
+
+  function endGame() {
+    const endTime = Date.now();
+    const timeTaken = Math.floor((endTime - startTime) / 1000); // Calculate elapsed time in seconds
+    setElapsedTime(timeTaken); // Set elapsed time in state
+  }
 
   return (
-    <div className="vh-100">
-      <Header
-        gold={gold}
-        currentLevel={currentLevel}
-        currentWorld={currentWorld}
-        currentWave={currentWave}
-      />
-      <MainContent
-        gold={gold}
-        setGold={setGold}
-        currentWave={currentWave}
-        currentLevel={currentLevel}
-        currentWorld={currentWorld}
-        setCurrentLevel={setCurrentLevel}
-        setCurrentWorld={setCurrentWorld}
-        setCurrentWave={setCurrentWave}
-      />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<StartPage resetGame={resetGame} />} />
+        <Route
+          path="/main"
+          element={
+            <MainPage
+              gold={gold}
+              setGold={setGold}
+              currentWave={currentWave}
+              setCurrentWave={setCurrentWave}
+              currentLevel={currentLevel}
+              setCurrentLevel={setCurrentLevel}
+              currentWorld={currentWorld}
+              setCurrentWorld={setCurrentWorld}
+              endGame={endGame}
+              setStartTime={setStartTime}
+            />
+          }
+        />
+        <Route
+          path="/credits"
+          element={
+            <CreditsPage elapsedTime={elapsedTime} resetGame={resetGame} />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
-export default App;
- */
-import { useEffect, useState } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import MainContent from "./components/MainContent";
-import Credits from "./components/Credits";
-
-function App() {
+/* function App() {
   const [gold, setGold] = useState(1);
   const [currentWave, setCurrentWave] = useState(1);
   const [currentLevel, setCurrentLevel] = useState(1);
@@ -101,3 +122,4 @@ function App() {
 }
 
 export default App;
+ */

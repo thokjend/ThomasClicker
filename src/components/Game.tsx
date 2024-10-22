@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import HealthBar from "../utils/HealthBar";
 import { handleClick, applyDps } from "../utils/HandleDamage";
 import { calculateGold } from "../utils/CalculateGold";
@@ -52,6 +53,8 @@ export default function Game({
   const x = canvasWidth / 2 - healthBarWidth / 2;
   const y = canvasHeight / 2 - healthBarHeight / 2;
 
+  const navigate = useNavigate();
+
   function handleProgression() {
     progress();
     setSprite(getRandomSprite());
@@ -85,6 +88,7 @@ export default function Game({
 
     if (currentWave === 10 && currentLevel === 10 && currentWorld === 10) {
       endGame();
+      navigate("/credits");
     }
 
     if (currentWave === 10) {
